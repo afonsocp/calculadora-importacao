@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Custo de Importação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Custo de Importação</h1>
+            <p>Calcule os custos totais de importação incluindo frete, impostos e taxas</p>
+        </header>
+
+        <main>
+            <!-- Seção de Produtos -->
+            <section class="card">
+                <h2>Produtos</h2>
+                <div class="table-container">
+                    <table id="produtos-table">
+                        <thead>
+                            <tr>
+                                <th>Preço Unitário</th>
+                                <th>Quantidade</th>
+                                <th>Peso Total (g)</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtos-tbody">
+                            <!-- Produtos serão adicionados dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" id="adicionar-produto" class="btn btn-primary">
+                    + Adicionar Produto
+                </button>
+            </section>
+
+            <!-- Seção de Configurações -->
+            <section class="card">
+                <h2>Configurações</h2>
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label for="aliquota-icms">Alíquota ICMS (%):</label>
+                        <input type="number" id="aliquota-icms" value="18" min="0" max="100" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label for="taxa-cambio">Taxa de Câmbio (¥ → R$):</label>
+                        <input type="number" id="taxa-cambio" placeholder="Ex: 0.847" step="0.001" min="0">
+                        <small>Cotação atual: R$ 1,00 = ¥ 1,18 (1 yuan = R$ 0,847)</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Resultados -->
+            <section class="card">
+                <h2>Resultados</h2>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <label>Subtotal de Produtos:</label>
+                        <div class="dual-currency">
+                            <span id="subtotal-produtos-yuan">¥ 0,00</span>
+                            <span id="subtotal-produtos-real">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <label>Frete:</label>
+                        <span id="frete-ienes">¥ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <label>Imposto de Importação (60%):</label>
+                        <div class="dual-currency">
+                            <span id="imposto-importacao-yuan">¥ 0,00</span>
+                            <span id="imposto-importacao-real">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <label>ICMS:</label>
+                        <div class="dual-currency">
+                            <span id="icms-yuan">¥ 0,00</span>
+                            <span id="icms-real">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="result-item total">
+                        <label>Total de Importação:</label>
+                        <div class="dual-currency">
+                            <span id="total-importacao-yuan">¥ 0,00</span>
+                            <span id="total-importacao-real">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <label>Total de Unidades:</label>
+                        <span id="total-unidades">0</span>
+                    </div>
+                    <div class="result-item">
+                        <label>Custo Médio por Unidade:</label>
+                        <div class="dual-currency">
+                            <span id="custo-medio-yuan">¥ 0,00</span>
+                            <span id="custo-medio-real">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="aviso-cambio" class="warning" style="display: none;">
+                    ⚠️ Taxa de câmbio não informada. O frete não foi convertido para a moeda dos produtos.
+                </div>
+            </section>
+
+            <!-- Seção de Detalhamento -->
+            <section class="card">
+                <h2>Detalhamento dos Cálculos</h2>
+                <div id="detalhamento" class="detalhamento">
+                    <!-- Detalhes dos cálculos serão mostrados aqui -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
